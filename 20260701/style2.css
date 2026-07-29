@@ -1,0 +1,92 @@
+/* 全体のベース設定 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* カウンターのコンテナ */
+.counter-container {
+    background-color: #ffffff;
+    padding: 40px 60px;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+.counter-title {
+    font-size: 1.2rem;
+    color: #888;
+    letter-spacing: 0.1em;
+    margin-bottom: 20px;
+}
+
+/* カウント数の大きな表示 */
+.counter-number {
+    font-size: 6rem;
+    font-weight: bold;
+    color: #1a73e8;
+    margin-bottom: 30px;
+    user-select: none;
+    transition: transform 0.1s ease;
+}
+
+.counter-number.bump {
+    transform: scale(1.1);
+}
+
+/* ボタンエリア */
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* ボタンの共通スタイル */
+.btn {
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 14px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* +1 ボタン */
+.btn-primary {
+    background-color: #1a73e8;
+    color: white;
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.2);
+}
+
+.btn-primary:hover {
+    background-color: #1557b0;
+}
+
+/* リセット ボタン */
+.btn-secondary {
+    background-color: #e8eaed;
+    color: #3c4043;
+}
+
+.btn-secondary:hover {
+    background-color: #dadce0;
+}
