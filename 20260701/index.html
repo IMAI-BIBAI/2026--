@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<!-- スマホなどでも幅に合わせて正しく表示するための設定 -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>自己紹介カード</title>
+
+<!-- Googleフォントを読み込むための接続準備 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- 見出し用の太字フォント(Archivo Black)と、等幅フォント(Space Mono)を読み込み -->
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- カードを画面中央に配置するためのラッパー -->
+<div class="stage">
+
+  <!-- 自己紹介カード本体(アパレルの下げ札風デザイン) -->
+  <div class="card" id="card">
+    <!-- タグの上部にある穴(パンチホール)を再現した丸い装飾 -->
+    <div class="punch"></div>
+
+    <!-- ブランドロゴ風の「V」マークとカード名 -->
+    <div class="tag-header">
+      <span class="logo-mark">V</span>
+      <span class="tag-label">MEMBER CARD</span>
+    </div>
+
+    <!-- 区切り線(点線) -->
+    <div class="divider"></div>
+
+    <!-- アイコン代わりの絵文字アバター -->
+    <div class="avatar" id="avatar">👤</div>
+    <!-- 名前 -->
+    <h1 class="name" id="name">山田 太郎</h1>
+    <!-- 職業(タグ風の枠付きラベル) -->
+    <p class="job" id="job">Webエンジニア</p>
+
+    <!-- 趣味の欄。ラベルと値を点線でつなぐ仕様書風レイアウト -->
+    <div class="spec-row">
+      <span class="spec-label">HOBBY</span>
+      <span class="spec-line"></span>
+      <span class="spec-value" id="hobby">キャンプ</span>
+    </div>
+
+    <!-- 一言メッセージ。ボタンを押すとJavaScriptでランダムに変わる -->
+    <p class="message" id="message">"今日という日を大切に、一歩ずつ前へ。"</p>
+
+    <!-- メッセージを切り替えるボタン -->
+    <button class="shuffle-btn" id="shuffleBtn">SHUFFLE MESSAGE</button>
+
+    <!-- 区切り線(点線) -->
+    <div class="divider"></div>
+
+    <!-- バーコード風の装飾(見た目だけで実際の情報は持たない) -->
+    <div class="barcode" id="barcode" aria-hidden="true"></div>
+    <!-- タグの通し番号風テキスト -->
+    <p class="serial">NO. 0001 / vaultroom style</p>
+  </div>
+</div>
+
+<!-- 動きやランダム表示を担当するJavaScriptファイル -->
+<script src="script.js"></script>
+</body>
+</html>

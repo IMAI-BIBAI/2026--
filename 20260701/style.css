@@ -1,0 +1,272 @@
+/* すべての要素の余白をリセットし、幅の計算方法を統一する */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ページ全体：黒背景に薄いグリッド線を敷いたインダストリアルな雰囲気 */
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Space Mono", monospace;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    #0a0a0a;
+  background-size: 32px 32px, 32px 32px, auto;
+  padding: 24px;
+}
+
+/* カードを画面中央に配置するコンテナ。perspectiveでカードに3D感を出す */
+.stage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 900px;
+}
+
+/* ---- カード本体：アパレルの下げ札(ハングタグ)風 ---- */
+
+.card {
+  position: relative;
+  background: #f5f4f0;
+  color: #111;
+  width: 100%;
+  max-width: 340px;
+  padding: 40px 32px 28px;
+  border: 1px solid #111;
+  /* 二重の黒枠＋ライムグリーンのオフセット影でポップアート風の立体感を演出 */
+  box-shadow: 0 0 0 1px #000, 6px 6px 0 #c6ff00;
+  text-align: center;
+  /* JavaScriptでrotateX/rotateYを当てたときに立体的に見えるようにする */
+  transform-style: preserve-3d;
+  /* マウス追従の傾きをなめらかに変化させる */
+  transition: transform 0.15s ease-out, box-shadow 0.15s ease-out;
+  /* ページ読み込み時にふわっと浮き上がって現れる登場アニメーション */
+  animation: card-enter 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* card-enter: 下から少し透明な状態で登場し、通常の位置・不透明度に落ち着く */
+@keyframes card-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(24px) scale(0.97);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* タグ上部の「穴」を再現した丸い装飾(実際に開いているように見せるための二重の縁取り) */
+.punch {
+  position: absolute;
+  top: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #0a0a0a;
+  box-shadow: 0 0 0 3px #f5f4f0, 0 0 0 4px #111;
+}
+
+/* ロゴマークとカード名を横並びに配置するヘッダー部分 */
+.tag-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 6px;
+  margin-bottom: 18px;
+}
+
+/* 「V」のブランドロゴ風マーク(黒背景に白文字の四角) */
+.logo-mark {
+  font-family: "Archivo Black", sans-serif;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #111;
+  color: #f5f4f0;
+}
+
+/* 「MEMBER CARD」のラベル文字 */
+.tag-label {
+  font-size: 11px;
+  letter-spacing: 4px;
+  font-weight: 700;
+  color: #111;
+}
+
+/* セクションを区切る点線 */
+.divider {
+  border-top: 1px dashed #111;
+  margin: 20px 0;
+  opacity: 0.5;
+}
+
+/* 丸いアバター(絵文字アイコン)エリア */
+.avatar {
+  width: 92px;
+  height: 92px;
+  margin: 4px auto 20px;
+  border-radius: 50%;
+  background: #111;
+  color: #f5f4f0;
+  border: 1px solid #111;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 42px;
+}
+
+/* 名前：太字の見出しフォントで大きく表示 */
+.name {
+  font-family: "Archivo Black", sans-serif;
+  font-size: 26px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+/* 職業：黒枠で囲んだタグ風のラベル */
+.job {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #111;
+  border: 1px solid #111;
+  padding: 5px 14px;
+  margin-bottom: 18px;
+}
+
+/* 趣味の行全体：ラベル・点線・値を横並びにする */
+.spec-row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin-bottom: 22px;
+  text-align: left;
+}
+
+/* 「HOBBY」のラベル文字 */
+.spec-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #555;
+  white-space: nowrap;
+}
+
+/* ラベルと値の間を埋める点線のリーダー線(伝票・仕様書風の演出) */
+.spec-line {
+  flex: 1;
+  border-bottom: 1px dotted #999;
+  height: 1px;
+  transform: translateY(-3px);
+}
+
+/* 趣味の値(実際の内容)のテキスト */
+.spec-value {
+  font-size: 12px;
+  font-weight: 700;
+  color: #111;
+  white-space: nowrap;
+}
+
+/* 一言メッセージのテキスト */
+.message {
+  font-size: 13px;
+  line-height: 1.9;
+  color: #333;
+  margin-bottom: 26px;
+  min-height: 44px;
+}
+
+/* メッセージ切り替えボタン(黒背景・白文字) */
+.shuffle-btn {
+  font-family: "Space Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: #111;
+  color: #f5f4f0;
+  border: 1px solid #111;
+  padding: 12px 24px;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+/* ボタンにマウスを乗せたときにライムグリーンへ反転させる */
+.shuffle-btn:hover {
+  background: #c6ff00;
+  color: #111;
+  border-color: #111;
+}
+
+/* バーコード風の装飾。縞模様はrepeating-linear-gradientで作っている */
+.barcode {
+  position: relative;
+  height: 34px;
+  margin-top: 18px;
+  margin-bottom: 8px;
+  overflow: hidden;
+  background: repeating-linear-gradient(
+    90deg,
+    #111 0px,
+    #111 2px,
+    transparent 2px,
+    transparent 4px,
+    #111 4px,
+    #111 5px,
+    transparent 5px,
+    transparent 9px,
+    #111 9px,
+    #111 12px,
+    transparent 12px,
+    transparent 14px
+  );
+}
+
+/* バーコードの上を左から右へ流れる光の帯(スキャンしているような演出) */
+.barcode::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -30%;
+  width: 30%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(198, 255, 0, 0.85), transparent);
+  animation: scan-sweep 3.2s ease-in-out infinite;
+}
+
+/* scan-sweep: 光の帯を左端から右端まで移動させ、右端で一瞬止めてから繰り返す */
+@keyframes scan-sweep {
+  0% {
+    left: -30%;
+  }
+  50% {
+    left: 100%;
+  }
+  100% {
+    left: 100%;
+  }
+}
+
+/* カード下部の通し番号風テキスト */
+.serial {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #555;
+  text-transform: uppercase;
+}
